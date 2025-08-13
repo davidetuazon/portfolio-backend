@@ -4,11 +4,8 @@ const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const helmet = require("helmet");
-const logger = require("./middleware/logger");
-
-const projectRoutes = require("./routes/projects");
-const contactRoutes = require("./routes/contact");
-const resumeRoutes = require('./routes/resume');
+const logger = require("./src/middleware/logger");
+const path = require('path');
 
 const app = express();
 
@@ -19,10 +16,16 @@ app.use(express.json());
 app.use (morgan("dev"));
 app.use(logger);
 
+const projectRoutes = require(path.resolve(".") + "/src/routes/projects");
+const contactRoutes = require(path.resolve(".") + "/src/routes/contact");
+const resumeRoutes = require(path.resolve(".") + "/src/routes/resume");
+
+const basepath = '/api';
+
 // Routes
-app.use("/projects", projectRoutes);
-app.use("/contact", contactRoutes);
-app.use('/resume', resumeRoutes);
+app.use(basepath + "/david", projectRoutes);
+app.use(basepath + "/david", contactRoutes);
+app.use(basepath + "/david", resumeRoutes);
 
 // 404 Handler
 app.use((req, res, next) => {

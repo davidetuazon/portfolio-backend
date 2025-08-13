@@ -8,6 +8,7 @@ const logger = require("./middleware/logger");
 
 const projectRoutes = require("./routes/projects");
 const contactRoutes = require("./routes/contact");
+const resumeRoutes = require('./routes/resume');
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(logger);
 // Routes
 app.use("/projects", projectRoutes);
 app.use("/contact", contactRoutes);
+app.use('/resume', resumeRoutes);
 
 // 404 Handler
 app.use((req, res, next) => {

@@ -29,10 +29,11 @@ exports.contactForm = async (req, res) => {
         })
 
         await transporter.sendMail({
-            from: `"${name}" <${email}>`,
+            from: `"${name}" <${process.env.USER_EMAIL_SECRET}>`,
             to: process.env.USER_EMAIL_SECRET,
             subject: 'Portfolio Contact Form',
-            text: cleanMessage
+            text: cleanMessage,
+            replyTo: email
         });
 
     console.log("Contact form submitted: ", { name, email, message });

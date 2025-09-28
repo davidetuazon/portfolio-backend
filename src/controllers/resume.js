@@ -1,7 +1,7 @@
 const path = require('path');
 
 exports.resume = (req, res) => {
-    const filePath = path.join(process.cwd(), '/public', 'Resume_David_Tuazon.pdf');
+    const filePath = path.join(process.cwd(), '/public', 'TUAZON_David_Wilfred_Resume.pdf');
 
     res.type('application/pdf');
     
